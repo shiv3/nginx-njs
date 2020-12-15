@@ -670,7 +670,7 @@
             }
         }
 
-        return (display_string);
+        console.log(display_string);
     };
 
     sudoku.validate_board = function(board){
@@ -805,29 +805,3 @@
 
 // Pass whatever the root object is, lsike 'window' in browsers
 })(this);
-
-function generate(r) {
-    var level = "easy";
-    switch (r.args["level"]) {
-        case 'easy':
-            level = "easy";
-            break;
-        case 'medium':
-            level = "medium";
-            break;
-        case 'hard':
-            level = "hard";
-            break;
-            
-    }
-
-    var q = sudoku.generate(level);
-    var v = sudoku.print_board(q);
-
-    r.return(200, q + '\n\n' + v );
-}
-
-function solve(r) {
-    var q = r.args["q"]
-    r.return(200, sudoku.print_board(sudoku.solve(q)));
-}
