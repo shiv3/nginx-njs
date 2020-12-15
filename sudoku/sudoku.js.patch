@@ -1,0 +1,47 @@
+diff --git a/sudoku/src/sudoku.js b/sudoku/src/sudoku.js
+index 65039da..46a5f70 100644
+--- a/sudoku/src/sudoku.js
++++ b/sudoku/src/sudoku.js
+@@ -670,7 +670,7 @@
+             }
+         }
+ 
+-        console.log(display_string);
++        return (display_string);
+     };
+ 
+     sudoku.validate_board = function(board){
+@@ -804,4 +804,30 @@
+     initialize();
+ 
+ // Pass whatever the root object is, lsike 'window' in browsers
+-})(this);
+\ No newline at end of file
++})(this);
++
++function generate(r) {
++    var level = "easy";
++    switch (r.args["level"]) {
++        case 'easy':
++            level = "easy";
++            break;
++        case 'medium':
++            level = "medium";
++            break;
++        case 'hard':
++            level = "hard";
++            break;
++            
++    }
++
++    var q = sudoku.generate(level);
++    var v = sudoku.print_board(q);
++
++    r.return(200, q + '\n\n' + v );
++}
++
++function solve(r) {
++    var q = r.args["q"]
++    r.return(200, sudoku.print_board(sudoku.solve(q)));
++}
+\ No newline at end of file
